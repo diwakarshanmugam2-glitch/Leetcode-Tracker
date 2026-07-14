@@ -1,0 +1,18 @@
+# Last updated: 7/14/2026, 2:02:55 PM
+class Solution:
+    def permute(self, nums):
+        res = []
+
+        def backtrack(path, remaining):
+            if not remaining:
+                res.append(path)
+                return
+
+            for i in range(len(remaining)):
+                backtrack(
+                    path + [remaining[i]],
+                    remaining[:i] + remaining[i+1:]
+                )
+
+        backtrack([], nums)
+        return res
